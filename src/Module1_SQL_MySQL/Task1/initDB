@@ -1,0 +1,55 @@
+  CREATE TABLE IF NOT EXISTS companies(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    UNIQUE (id, name)
+  )ENGINE = InnoDB;
+
+  CREATE TABLE IF NOT EXISTS customers(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    UNIQUE (id, name)
+  )ENGINE = InnoDB;
+
+  CREATE TABLE IF NOT EXISTS developers(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    first_name VARCHAR(20) NOT NULL,
+    surname VARCHAR(20) NOT NULL,
+    UNIQUE (id)
+  )ENGINE = InnoDB;
+
+  CREATE TABLE IF NOT EXISTS skills(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    UNIQUE (id, name)
+  )ENGINE = InnoDB;
+
+  CREATE TABLE IF NOT EXISTS projects(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    companie_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    FOREIGN KEY (companie_id) REFERENCES companies (id),
+    FOREIGN KEY (customer_id) REFERENCES customers (id),
+    UNIQUE (id)
+  )ENGINE = InnoDB;
+
+  CREATE TABLE IF NOT EXISTS developers_skills(
+    developer_id INT NOT NULL,
+    skill_id INT NOT NULL,
+    FOREIGN KEY (developer_id) REFERENCES developers (id),
+    FOREIGN KEY (skill_id) REFERENCES skills (id)
+  )ENGINE = InnoDB;
+
+  CREATE TABLE IF NOT EXISTS developers_company(
+    developer_id INT NOT NULL,
+    company_id INT NOT NULL,
+    FOREIGN KEY (developer_id) REFERENCES developers (id),
+    FOREIGN KEY (company_id) REFERENCES companies (id)
+  )ENGINE = InnoDB;
+
+  CREATE TABLE IF NOT EXISTS developers_project(
+    developer_id INT NOT NULL,
+    project_id INT NOT NULL,
+    FOREIGN KEY (developer_id) REFERENCES developers (id),
+    FOREIGN KEY (project_id) REFERENCES projects (id)
+  );

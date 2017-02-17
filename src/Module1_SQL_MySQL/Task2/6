@@ -1,0 +1,4 @@
+  SELECT projects.name, AVG(developers.salary) as avg_salary, MIN(cost) as min_cost FROM projects
+  INNER JOIN developers_project ON projects.id = developers_project.project_id
+  INNER JOIN developers ON developers_project.developer_id = developers.id
+  WHERE projects.cost = (SELECT MIN(cost) FROM projects);

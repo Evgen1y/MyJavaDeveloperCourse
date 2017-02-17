@@ -1,0 +1,7 @@
+SELECT companies.name, customers.name, min_cost
+FROM (SELECT MIN(cost) as min_cost, projects.companie_id as com_id
+      FROM projects
+      GROUP BY projects.companie_id) as min_table
+INNER JOIN projects ON projects.cost = min_cost AND projects.companie_id = com_id
+INNER JOIN companies ON projects.companie_id = companies.id
+INNER JOIN customers ON projects.customer_id = customers.id

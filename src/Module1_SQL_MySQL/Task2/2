@@ -1,0 +1,5 @@
+SELECT projects.name, sum(developers.salary) FROM projects
+INNER JOIN developers_project ON projects.id = developers_project.project_id
+INNER JOIN developers ON developers_project.developer_id = developers.id
+GROUP BY projects.name ORDER BY sum(developers.salary) DESC
+LIMIT 1;

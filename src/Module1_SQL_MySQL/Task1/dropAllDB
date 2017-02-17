@@ -1,0 +1,8 @@
+DROP TABLE developers_project;
+DROP TABLE projects;
+DROP TABLE developers_company;
+DROP TABLE companies;
+DROP TABLE customers;
+DROP TABLE developers_skills;
+DROP TABLE developers;
+DROP TABLE skills;

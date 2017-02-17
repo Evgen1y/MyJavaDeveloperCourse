@@ -1,0 +1,4 @@
+SELECT  skills.name, sum(developers.salary) FROM developers
+INNER JOIN developers_skills ON developers.id = developers_skills.developer_id
+INNER JOIN skills ON developers_skills.skill_id = skills.id
+WHERE skills.name = 'Java';

@@ -1,0 +1,9 @@
+ALTER TABLE projects ADD COLUMN cost INT DEFAULT 0;
+
+UPDATE projects AS a,
+  (SELECT sum(developers.salary) as sum, projects.name FROM projects
+  INNER JOIN developers_project ON projects.id = developers_project.project_id
+  INNER JOIN developers ON developers_project.developer_id = developers.id
+  GROUP BY projects.name) AS b
+SET a.cost = (b.sum + (b.sum*0.30))
+WHERE a.name = b.name;
